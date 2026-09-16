@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A'dan Z'ye Eksiksiz Nâfile ve Özel Namazlar Rehberi</title>
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --card-bg: #1f2833;
+            --primary-gold: #c5a059;
+            --light-gold: #f3e5ab;
+            --text-color: #c5c6c7;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.7;
+        }
+
+        /* Köşe Süslemeleri - Daha Büyük ve Belirgin */
+        .corner-decoration {
+            position: fixed;
+            top: 20px;
+            font-family: 'Traditional Arabic', 'Amiri', serif;
+            font-size: 2.8rem;
+            color: var(--primary-gold);
+            text-shadow: 0 0 15px rgba(197, 160, 89, 0.7);
+            z-index: 1000;
+            pointer-events: none;
+            background: rgba(11, 12, 16, 0.9);
+            padding: 5px 18px;
+            border-radius: 16px;
+            border: 2px solid rgba(197, 160, 89, 0.5);
+        }
+        .top-left { left: 25px; }
+        .top-right { right: 25px; }
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--primary-gold);
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            color: var(--light-gold);
+            font-size: 1.9rem;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            color: var(--text-color);
+            font-size: 1.05rem;
+        }
+
+        .global-print-bar {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .menu-item {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 18px 22px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--light-gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-item:hover {
+            background-color: var(--primary-gold);
+            color: #000;
+            border-color: var(--light-gold);
+            transform: translateY(-2px);
+        }
+
+        .detail-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            padding: 35px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            display: none;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .detail-card h2 {
+            color: var(--light-gold);
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-gold);
+            padding-bottom: 12px;
+            font-size: 1.6rem;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--light-gold);
+            margin-top: 25px;
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+            border-left: 4px solid var(--primary-gold);
+            padding-left: 10px;
+        }
+
+        .arabic-text {
+            font-family: 'Traditional Arabic', 'Amiri', serif;
+            font-size: 1.4rem;
+            direction: rtl;
+            text-align: right;
+            background-color: #12161f;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 8px 0;
+            color: var(--light-gold);
+            line-height: 1.8;
+        }
+
+        .dua-box {
+            background-color: #12161f;
+            border-left: 4px solid var(--primary-gold);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 16px 20px;
+            margin: 10px 0 20px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #e5e5e5;
+        }
+
+        .step-box {
+            background-color: #12161f;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            color: #dcdcdc;
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            background-color: var(--primary-gold);
+            color: #0b0c10;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--light-gold);
+            transform: translateY(-1px);
+        }
+
+        .back-btn {
+            background-color: #3a4454;
+            color: var(--light-gold);
+        }
+        .back-btn:hover {
+            background-color: #4e5d73;
+            color: #fff;
+        }
+
+        /* İmza Alanı */
+        .signature-footer {
+            margin-top: 40px;
+            text-align: right;
+            font-style: italic;
+            color: var(--primary-gold);
+            border-top: 1px dashed rgba(197, 160, 89, 0.3);
+            padding-top: 15px;
+            font-size: 1.05rem;
+        }
+
+        /* --- A4 YAZICI ÇIKTISI AYARLARI (TÜMÜNÜ YAZDIR) --- */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                padding: 0;
+                margin: 0;
+            }
+            .corner-decoration, .action-bar, header, .global-print-bar, .menu-grid {
+                display: none !important;
+            }
+            /* Yazdırma sırasında tüm detay kartlarını alt alta açar */
+            .detail-card {
+                display: block !important;
+                background-color: #ffffff !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 10px 0 !important;
+                color: #000000 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                page-break-after: always;
+            }
+            .detail-card h2 {
+                color: #000000 !important;
+                border-bottom: 2px solid #000 !important;
+            }
+            .section-title {
+                color: #000000 !important;
+                border-left-color: #000 !important;
+            }
+            .arabic-text, .dua-box, .step-box {
+                background-color: #f9f9f9 !important;
+                color: #000000 !important;
+                border: 1px solid #ccc !important;
+            }
+            .signature-footer {
+                color: #000 !important;
+                border-top: 1px solid #000 !important;
+            }
+            @page {
+                size: A4;
+                margin: 15mm;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Üst Köşe Süslemeleri (Büyük ve Belirgin) -->
+    <div class="corner-decoration top-left">الله</div>
+    <div class="corner-decoration top-right">محمد</div>
+
+    <div class="container">
+        <!-- ANA EKRAN -->
+        <div id="main-screen">
+            <header>
+                <h1>Nâfile ve Özel Namazlar Rehberi</h1>
+                <p>A'dan Z'ye Eksiksiz Ansiklopedik Sürüm</p>
+            </header>
+
+            <div class="global-print-bar">
+                <button class="btn" onclick="printAll()" style="font-size: 1.05rem; padding: 12px 25px;">🖨️ Tüm Rehberi A4 Yazıcısına Gönder</button>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item" onclick="showDetail('teheccud')">🌙 1. Teheccüd Namazı (Gece İbadeti) <span>&rsaquo;</span></div>
+                <div class="menu-item" onclick="showDetail('hacet')">🤲 2. Hâcet Namazı (Özel Tertipli ve Uzun Dualı) <span>&rsaquo;</span></div>
+                <div class="menu-item" onclick="showDetail('istihare')">⭐ 3. İstihare Namazı ve İstihare Duası <span>&rsaquo;</span></div>
+                <div class="menu-item" onclick="showDetail('tahiyyet')">🕌 4. Tahiyyetü'l-Mescit (Mescidi Selamlama) <span>&rsaquo;</span></div>
+                <div class="menu-item" onclick="showDetail('abdest')">💧 5. Abdest ve Gusül Namazı <span>&rsaquo;</span></div>
+                <div class="menu-item" onclick="showDetail('yolculuk')">✈️ 6. Yolculuk (Sefer) Namazı <span>&rsaquo;</span></div>
+                <div class="menu-item" onclick="showDetail('tovbe')">🤍 7. Tövbe Namazı ve Seyyidü'l-İstiğfar <span>&rsaquo;</span></div>
+                <div class="menu-item" onclick="showDetail('receteler')" style="border: 2px dashed var(--primary-gold);">✨ 8. Hayatın Alanlarına Göre Özel Zikirler ve Reçeteler <span>&rsaquo;</span></div>
+            </div>
+
+            <div class="signature-footer">
+                Hazırlayan: Kemal Erdal
+            </div>
+        </div>
+
+        <!-- 1. TEHECCÜD -->
+        <div id="detail-teheccud" class="detail-card hidden">
+            <div class="action-bar">
+                <button class="btn back-btn" onclick="goBack()">&larr; Ana Menüye Dön</button>
+                <button class="btn" onclick="window.print()">🖨️ Bu Sayfayı Yazdır</button>
+            </div>
+            <h2>Teheccüd Namazı Kapsamlı Rehberi</h2>
+            
+            <div class="section-title">Nâfile İbadetlerin Şahı: Teheccüd</div>
+            <div>Teheccüd namazı, yatsı namazı kılındıktan ve bir miktar uyunduktan sonra gecenin ilerleyen saatlerinde (özellikle son üçte birlik diliminde) uyanılarak kılınan, Kur'an'da hususi olarak teşvik edilmiş en faziletli nâfile namazlardan biridir.</div>
+
+            <div class="section-title">Adım Adım Kılınışı</div>
+            <div class="step-box">
+                • <b>Niyet:</b> Kalben "Niyet ettim Allah rızası için Teheccüd namazı kılmaya" denilir.<br>
+                • <b>Rekat Yapısı:</b> İkişer rekatlar halinde dilenildiği kadar (2, 4, 6, 8 vb.) kılınır. Her 2 rekatta bir selam verilir.<br>
+                • <b>1. Rekat:</b> Tekbirden sonra Sübhaneke okunur, Euzü-besmele çekilip <b>Fatiha</b> ve ardından ezberden uzun veya kısa bir sure okunur. Rükû ve secdeler yapılarak 2. rekata kalkılır.<br>
+                • <b>2. Rekat:</b> Besmele çekilip yine <b>Fatiha</b> ve bir sure okunur. Rükû ve secdelerin ardından <b>Son Oturuş</b>'a geçilir.
+            </div>
+
+            <div class="section-title">Son Oturuşte Eksiksiz Okunacak Dualar</div>
+            
+            <div style="font-weight:bold; color:var(--light-gold); margin-top:15px;">1. Et-Tahiyyâtü Duası:</div>
+            <div class="arabic-text">التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</div>
+            <div class="dua-box"><b>Okunuşu:</b> Et-tahiyyâtü lillâhi vessalevâtü vettayyibât. Esselâmü aleyke eyyühen-nebiyyü ve rahmetullâhi ve berekâtüh. Esselâmü aleynâ ve alâ ibâdillâhis-sâlihîn. Eşhedü en lâ ilâhe illallâh ve eşhedü enne Muhammeden abdüke ve resûlüh.</div>
+
+            <div style="font-weight:bold; color:var(--light-gold); margin-top:15px;">2. Allâhümme Salli ve Allâhümme Bârik Duaları:</div>
+            <div class="arabic-text">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ - اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</div>
+            <div class="dua-box"><b>Okunuşu:</b> Allâhümme salli alâ Muhammedin ve alâ âli Muhammed. Kemâ saleyte alâ İbrâhîme ve alâ âli İbrâhîm. Inneke hamidün mecîd. Allâhümme bârik alâ Muhammedin ve alâ âli Muhammed. Kemâ bârakte alâ İbrâhîme ve alâ âli İbrâhîm. Inneke hamidün mecîd.</div>
+
+            <div style="font-weight:bold; color:var(--light-gold); margin-top:15px;">3. Rabbenâ Âtinâ ve Rabbenâğfirli Duaları:</div>
+            <div class="arabic-text">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ - رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ</div>
+            <div class="dua-box"><b>Okunuşu:</b> Rabbenâ âtinâ fid-dünyâ haseneten ve fil-âhireti haseneten ve kinâ azâben-nâr. Rabbenâğfir lî ve li-vâlideyye ve lil-müminîne yevme yegûmül-hisâb. (Ardından sağa ve sola selam verilerek namaz bitirilir).</div>
+
+            <div class="section-title">Namaz Sonrası Teheccüd Münâcâtı (Özel Duası)</div>
+            <div class="arabic-text">اللَّهُمَّ لَكَ الْحَمْدُ أَنْتَ قَيِّمُ السَّمَاوَاتِ وَالأَرْضِ وَمَنْ فِيهِنَّ، وَلَكَ الْحَمْدُ أَنْتَ نُورُ السَّمَاوَاتِ وَالأَرْضِ وَمَنْ فِيهِنَّ، وَلَكَ الْحَمْدُ أَنْتَ مَلِكُ السَّمَاوَاتِ وَالأَرْضِ، وَلَكَ الْحَمْدُ أَنْتَ الْحَقُّ...</div>
+            <div class="dua-box"><b>Türkçe Anlamı:</b> "Allah’ım! Hamd senindir. Sen göklerin, yerin ve içindekilerin ayakta durmasını sağlayan Rabbisin. Nur da senindir, mülk de senindir... Allah'ım! Sana teslim oldum, sana inandım, sana güvendim, yüzümü sana çevirdim. Günahlarımdan dolayı sana tövbe ediyorum. Beni bağışla, sen affedicisin, affetmeyi seversin."</div>
+
+            <div class="signature-footer">Hazırlayan: Kemal Erdal</div>
+        </div>
+
+        <!-- 2. HÂCET -->
+        <div id="detail-hacet" class="detail-card hidden">
+            <div class="action-bar">
+                <button class="btn back-btn" onclick="goBack()">&larr; Ana Menüye Dön</button>
+                <button class="btn" onclick="window.print()">🖨️ Bu Sayfayı Yazdır</button>
+            </div>
+            <h2>Hâcet Namazı (Özel Tertipli) Detaylı Rehberi</h2>
+            
+            <div class="section-title">Hâcet Namazının Amacı ve Önemi</div>
+            <div>Dünyevi veya uhrevi meşru bir ihtiyacı, çözülmesi istenen zor bir işi veya mühim bir dileği olan müslümanın Allah'a iltica ederek kıldığı özel bir nâfile namazdır.</div>
+
+            <div class="section-title">Özel Sure Tertibi ile Kılınışı</div>
+            <div class="step-box">
+                • <b>2 veya 4 Rekat Olarak Kılınır.</b><br>
+                • <b>1. Rekat:</b> Sübhaneke okunur, Euzü-besmele çekilir, Fatiha'dan sonra <b>1 defa Âyetü'l-Kürsi</b> okunur ve rükû-secdeye gidilir.<br>
+                • <b>2. Rekat:</b> Besmele çekilir, Fatiha'dan sonra sırasıyla <b>İhlâs, Felak ve Nâs sureleri</b> okunur.<br>
+                *(Eğer 4 rekat kılınacaksa 2. rekatın sonunda sadece Et-Tahiyyâtü için oturulur, kalkılıp 3. ve 4. rekatlarda yine Fatiha, İhlas, Felak ve Nas okunarak tamamlanır).* Son oturuşte standart oturuş duaları eksiksiz okunup selam verilir.
+            </div>
+
+            <div class="section-title">Namaz Sonrası Okunacak Orijinal Uzun Hâcet Duası</div>
+            <div class="dua-box">
+                <b>Arapça Metin:</b>
+                <div class="arabic-text">لاَ إِلَهَ إِلاَّ اللَّهُ الْحَلِيمُ الْكَرِيمُ، سُبْحَانَ اللَّهِ رَبِّ الْعَرْشِ الْعَظِيمِ، الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ. أَسْأَلُكَ مُوجِبَاتِ رَحْمَتِكَ، وَعَزَائِمَ مَغْفِرَتِكَ، وَالْغَنِيمَةَ مِنْ كُلِّ بِرِّ، وَالسَّلَامَةَ مِنْ كُلِّ إِثْمٍ. لاَ تَدَعْ لِي ذَنْباً إِلاَّ غَفَرْتَهُ، وَلاَ هَمّاً إِلاَّ فَرَّجْتَهُ، وَلاَ حَاجَةً هِيَ لَكَ رِضاً إِلاَّ قَضَيْتَهَا يَا أَرْحَمَ الرَّاحِمِينَ.</div>
+                
+                <b>Türkçe Okunuşu (Telaffuzu):</b><br>
+                "Lâ ilâhe illallâhül-halîmül-kerîm. Sübhanallahi rabbil-arşil-azîm. Elhamdülillahi rabbil-âlemîn. Es'elüke mücibâti rahmetike ve azâime mağfiratike vel-ganîmete min külli birrin vesselamete min külli ismin. Lâ teda' lî zenben illâ gafertehû ve lâ hemmen illâ ferrectehü ve lâ hâceten hiye leke rıdan illâ kadeytehâ yâ erhamerrahimîn."<br><br>
+
+                <b>Türkçe Anlamı:</b><br>
+                "Halim ve kerim olan Allah'tan başka ilah yoktur. Büyük arşın Rabbi olan Allah'ı noksan sıfatlardan tenzih ederim. Hamd alemlerin Rabbi olan Allah'adır. Allah'ım! Senden rahmetini gerektirecek şeyleri, mağfiretini, her türlü iyiliği kazanmayı ve her günahtan kurtulmayı dilerim. Üzerimde bağışlamadığın hiçbir günah, giderilmedik hiçbir sıkıntı ve rızana uygun olup da karşılamadığın hiçbir hacet bırakma, ey merhametlilerin merhametlisi!"
+            </div>
+
+            <div class="signature-footer">Hazırlayan: Kemal Erdal</div>
+        </div>
+
+        <!-- 3. İSTİHARE -->
+        <div id="detail-istihare" class="detail-card hidden">
+            <div class="action-bar">
+                <button class="btn back-btn" onclick="goBack()">&larr; Ana Menüye Dön</button>
+                <button class="btn" onclick="window.print()">🖨️ Bu Sayfayı Yazdır</button>
+            </div>
+            <h2>İstihare Namazı ve İstihare Duası</h2>
+            <div class="section-title">İstihare Namazının Mahiyeti</div>
+            <div>Hayatında önemli bir karar aşamasında olan bir kişinin, o işin hakkında hayırlı olup olmadığını kalben anlamak ve Allah'ın takdirine teslim olmak amacıyla yatmadan önce kıldığı 2 rekatlık nâfile namazdır.</div>
+
+            <div class="section-title">Kılınışı ve Okunacak Sureler</div>
+            <div class="step-box">
+                • <b>2 Rekattır.</b><br>
+                • <b>1. Rekat:</b> Sübhaneke, Fatiha ve <b>Kâfirûn Suresi</b> okunur.<br>
+                • <b>2. Rekat:</b> Besmele, Fatiha ve <b>İhlâs Suresi</b> okunur.<br>
+                • Son oturuşte standart dualar okunup selam verilir ve istihare duasına geçilir.
+            </div>
+
+            <div class="section-title">İstihare Duası (Eksiksiz Metin)</div>
+            <div class="dua-box">
+                <b>Arapça Metin:</b>
+                <div class="arabic-text">اللَّهُمَّ إِنِّي أَسْتَخِيرُكَ بِعِلْمِكَ، وَأَسْتَقْدِرُكَ بِقُدْرَتِكَ، وَأَسْأَلُكَ مِنْ فَضْلِكَ الْعَظِيمِ...</div>
+                <b>Türkçe Okunuşu:</b> "Allâhümme innî estehîruke bi-ilmike ve estakdiruke bi-kuvratike ve es'elüke min fadlikel-azîm..."<br>
+                <b>Türkçe Anlamı:</b> "Allah'ım! Senin ilminle hakkımda hayırlı olanı istiyorum... Eğer bu iş hakkımda hayırlı ise onu bana takdir et..."
+            </div>
+
+            <div class="signature-footer">Hazırlayan: Kemal Erdal</div>
+        </div>
+
+        <!-- 4. TAHİYYETÜ'L-MESCİT -->
+        <div id="detail-tahiyyet" class="detail-card hidden">
+            <div class="action-bar">
+                <button class="btn back-btn" onclick="goBack()">&larr; Ana Menüye Dön</button>
+                <button class="btn" onclick="window.print()">🖨️ Bu Sayfayı Yazdır</button>
+            </div>
+            <h2>Tahiyyetü'l-Mescit (Mescidi Selamlama) Namazı</h2>
+            <div class="section-title">Mahiyeti</div>
+            <div>Mescide veya camiye girildiğinde, henüz oturmadan önce Allah'ın evine hürmeten ve ikramda bulunmak amacıyla kılınan 2 rekatlık nâfile namazdır.</div>
+            <div class="section-title">Kılınışı ve Duası</div>
+            <div class="step-box">
+                Herhangi bir 2 rekatlık nâfile namaz gibi kılınır. Son oturuşte standart dualar okunup selam verilir.<br>
+                <div class="dua-box">"Allah'ım! Hürmetine ve ibadet amacıyla geldiğimiz bu mescitte bize rahmet kapılarını aç, günahlarımızı bağışla."</div>
+            </div>
+
+            <div class="signature-footer">Hazırlayan: Kemal Erdal</div>
+        </div>
+
+        <!-- 5. ABDEST VE GUSÜL -->
+        <div id="detail-abdest" class="detail-card hidden">
+            <div class="action-bar">
+                <button class="btn back-btn" onclick="goBack()">&larr; Ana Menüye Dön</button>
+                <button class="btn" onclick="window.print()">🖨️ Bu Sayfayı Yazdır</button>
+            </div>
+            <h2>Abdest ve Gusül Namazı</h2>
+            <div class="section-title">Mahiyeti ve Kılınışı</div>
+            <div class="step-box">
+                Yeni bir abdest veya boy abdesti alındıktan sonra şükür maksadıyla kılınan 2 rekatlık namazdır. Son oturuşte standart dualar okunur.<br>
+                <div class="dua-box">"Allah'ım! Beni tövbe edenlerden eyle, beni tertemiz olan kullarından kıl."</div>
+            </div>
+
+            <div class="signature-footer">Hazırlayan: Kemal Erdal</div>
+        </div>
+
+        <!-- 6. YOLCULUK -->
+        <div id="detail-yolculuk" class="detail-card hidden">
+            <div class="action-bar">
+                <button class="btn back-btn" onclick="goBack()">&larr; Ana Menüye Dön</button>
+                <button class="btn" onclick="window.print()">🖨️ Bu Sayfayı Yazdır</button>
+            </div>
+            <h2>Yolculuk (Sefer) Namazı</h2>
+            <div class="section-title">Mahiyeti ve Duası</div>
+            <div class="step-box">
+                Uzun seyahate çıkarken evden ayrılmadan önce kılınan 2 rekatlık namazdır.<br>
+                <div class="dua-box">"Allah'ım! Sen seferde yardımcı, geride kalan ailemizin koruyucususun. Yolculuğu üzerimize kolay kıl ve uzaklığı yakın eyle."</div>
+            </div>
+
+            <div class="signature-footer">Hazırlayan: Kemal Erdal</div>
+        </div>
+
+        <!-- 7. TÖVBE -->
+        <div id="detail-tovbe" class="detail-card hidden">
+            <div class="action-bar">
+                <button class="btn back-btn" onclick="goBack()">&larr; Ana Menüye Dön</button>
+                <button class="btn" onclick="window.print()">🖨️ Bu Sayfayı Yazdır</button>
+            </div>
+            <h2>Tövbe Namazı ve Seyyidü'l-İstiğfar</h2>
+            <div class="section-title">Mahiyeti ve Kılınışı</div>
+            <div class="step-box">
+                Günah işlendiğinde veya pişmanlık duyulduğunda kılınan 2 rekatlık namazdır. Selamdan sonra Seyyidü'l-İstiğfar okunur.
+            </div>
+            <div class="section-title">Seyyidü'l-İstiğfar Duası</div>
+            <div class="dua-box">
+                <b>Arapça Metin:</b>
+                <div class="arabic-text">اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ...</div>
+                <b>Türkçe Anlamı:</b> "Allah'ım! Sen benim Rabbimsin, Senden başka ilah yoktur. Beni Sen yarattın..."
+            </div>
+
+            <div class="signature-footer">Hazırlayan: Kemal Erdal</div>
+        </div>
+
+        <!-- 8. ÖZEL REÇETELER -->
+        <div id="detail-receteler" class="detail-card hidden">
+            <div class="action-bar">
+                <button class="btn back-btn" onclick="goBack()">&larr; Ana Menüye Dön</button>
+                <button class="btn" onclick="window.print()">🖨️ Bu Sayfayı Yazdır</button>
+            </div>
+            <h2>Hayatın Alanlarına Göre Özel Zikirler ve Reçeteler</h2>
+            
+            <div class="section-title">💰 Maddi Sıkıntılar İçin:</div>
+            <div class="step-box">
+                Geceleri 2 rekat Hacet namazı kılınır. Gün içinde <b>100 defa "La havle ve la kuvvete illa billah"</b> çekilir ve <b>"Ya Rezrâk, ya Fettah"</b> esmalarına devam edilir.
+            </div>
+
+            <div class="section-title">🫂 Eşiyle Bağını Kuvvetlendirmek İçin:</div>
+            <div class="step-box">
+                Akşam-yatsı arası 2 rekat nâfile kılınır, bolca <b>"Ya Vedûd"</b> esması zikredilir.
+            </div>
+
+            <div class="section-title">🧠 İç Ferahlığı İçin (Hz. Yunus'un Duası):</div>
+            <div class="step-box">
+                <div class="dua-box">
+                    <div class="arabic-text">لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ</div>
+                    <b>Okunuşu:</b> "Lâ ilâhe illâ ente sübhaneke innî küntü minezzâlimîn."
+                </div>
+            </div>
+
+            <div class="signature-footer">Hazırlayan: Kemal Erdal</div>
+        </div>
+
+    </div>
+
+    <script>
+        function showDetail(id) {
+            document.getElementById('main-screen').style.display = 'none';
+            const cards = document.querySelectorAll('.detail-card');
+            cards.forEach(card => card.style.display = 'none');
+            document.getElementById('detail-' + id).style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function goBack() {
+            const cards = document.querySelectorAll('.detail-card');
+            cards.forEach(card => card.style.display = 'none');
+            document.getElementById('main-screen').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // Tüm rehberi tek seferde A4 yazıcısına gönderme fonksiyonu
+        function printAll() {
+            const cards = document.querySelectorAll('.detail-card');
+            cards.forEach(card => card.style.display = 'block');
+            document.getElementById('main-screen').style.display = 'none';
+            
+            window.print();
+            
+            // Yazdırma işlemi bittikten/iptal edildikten sonra ana ekrana dön
+            cards.forEach(card => card.style.display = 'none');
+            document.getElementById('main-screen').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
